@@ -45,11 +45,17 @@ class Board
       self[start_pos] = nil
     end
   end
+
+  def in_bounds?(pos)
+    # [x,y]
+    return true if (pos[0] < 8 && pos[0] >= 0) && (pos[1] < 8 && pos[1] >= 0)
+    false
+  end
 end
 
 
 
-new_board = Board.new
-new_board.populate_grid
-new_board.move_piece([0,0],[3,3])
-p new_board
+# new_board = Board.new
+# new_board.populate_grid
+# new_board.move_piece([0,0],[3,3])
+# p new_board
