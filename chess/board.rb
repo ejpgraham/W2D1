@@ -15,9 +15,9 @@ class Board
         elsif index == 1
           row[index2] = Piece.new("P").name
         elsif index == 6
-          row[index2] = Piece.new("P").name
+          row[index2] = Piece.new("B").name
         elsif index == 7
-          row[index2] = Piece.new("P").name
+          row[index2] = Piece.new("B").name
         else
           row[index2] = nil
         end
@@ -25,11 +25,31 @@ class Board
     end
   end
 
-  def move_piece
+  def [](pos)
+   row, col = pos
+   @grid[row][col]
+  end
+
+  def []=(pos, val)
+    row, col = pos
+    @grid[row][col] = val
+  end
+
+  def move_piece(start_pos,end_pos)
+    if self[start_pos] == nil
+      raise "No piece found"
+    elsif self[end_pos] == self[start_pos]
+      raise "Can't take your own piece"
+    else
+      self[end_pos] = self[start_pos]
+      self[start_pos] = nil
+    end
   end
 end
 
 
 
 new_board = Board.new
-p new_board.populate_grid
+new_board.populate_grid
+new_board.move_piece([0,0],[3,3])
+p new_board
