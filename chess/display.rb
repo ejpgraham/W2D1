@@ -1,7 +1,8 @@
-require "byebug"
 require_relative "board"
-require "colorize"
 require_relative "cursor"
+require "byebug"
+require "colorize"
+
 
 class Display
   def initialize(board)
@@ -18,9 +19,9 @@ class Display
         end
         # debugger
         if [index, index2] == @cursor.cursor_pos
-          display_row += "#{@board.grid[index][index2]} ".red
+          display_row += @board.grid[index][index2].symbol.red + " "
         else
-          display_row += "#{@board.grid[index][index2]} "
+          display_row += @board.grid[index][index2].symbol + " "
         end
       end
       puts display_row
@@ -30,8 +31,8 @@ class Display
   def test_display
     while true
       render
-      sleep(1)
       @cursor.get_input
+      system("clear")
     end
   end
 end

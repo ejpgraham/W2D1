@@ -1,5 +1,10 @@
 require "byebug"
 require_relative "piece"
+require_relative "rook"
+require_relative "nullpiece"
+# require_relative "display"
+# require_relative "cursor"
+
 class Board
   attr_accessor :grid
   def initialize
@@ -11,16 +16,28 @@ class Board
     @grid.each_with_index do |row, index|
       row.each_with_index do |tile, index2|
         # debugger
-        if index == 0
-          row[index2] = Piece.new("W").name
-        elsif index == 1
-          row[index2] = Piece.new("W").name
-        elsif index == 6
-          row[index2] = Piece.new("B").name
-        elsif index == 7
-          row[index2] = Piece.new("B").name
+        case index
+        when 0
+          case index2
+          when 0,7
+          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          when 1,6
+          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          when 2,5
+          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          when 3
+          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          when 4
+          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          end
+        when 1
+          row[index2] = Rook.new("Bishop", "B",[index,index2],"White")
+        when 6
+          row[index2] = Rook.new("Bishop", "B",[index,index2],"Black")
+        when 7
+          row[index2] = Rook.new("Rook", "R",[index,index2],"Black")
         else
-          row[index2] = nil
+          row[index2] = NullPiece.new("NullPiece", "N",[index,index2])
         end
       end
     end

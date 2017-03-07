@@ -1,5 +1,4 @@
 require "io/console"
-require_relative "board"
 require "byebug"
 
 KEYMAP = {
@@ -77,24 +76,16 @@ class Cursor
     return input
   end
 
+
+
   def handle_key(key)
     case key
     when :return, :space
       @cursor_pos
-    when :up
-      update_pos([-1,0])
-      nil
-    when :left
-      update_pos([0,-1])
-      nil
-    when :right
-      update_pos([0,1])
-      nil
-    when :down
-      update_pos([1,0])
-      nil
     when :ctrl_c
       Process.exit(0)
+    when :up, :down, :right, :left
+      update_pos(MOVES[key])
     end
   end
 
