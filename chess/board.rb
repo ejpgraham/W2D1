@@ -4,6 +4,7 @@ class Board
   attr_accessor :grid
   def initialize
     @grid = Array.new(8){Array.new(8)}
+    populate_grid
   end
 
   def populate_grid
@@ -11,9 +12,9 @@ class Board
       row.each_with_index do |tile, index2|
         # debugger
         if index == 0
-          row[index2] = Piece.new("P").name
+          row[index2] = Piece.new("W").name
         elsif index == 1
-          row[index2] = Piece.new("P").name
+          row[index2] = Piece.new("W").name
         elsif index == 6
           row[index2] = Piece.new("B").name
         elsif index == 7

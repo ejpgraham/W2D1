@@ -1,5 +1,6 @@
 require "io/console"
 require_relative "board"
+require "byebug"
 
 KEYMAP = {
   " " => :space,
@@ -77,8 +78,8 @@ class Cursor
   end
 
   def handle_key(key)
-    case KEYMAP[key]
-    when :return || :space
+    case key
+    when :return, :space
       @cursor_pos
     when :up
       update_pos([-1,0])
