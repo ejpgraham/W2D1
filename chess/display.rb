@@ -12,19 +12,27 @@ class Display
 
   def render
     @board.grid.each_with_index do |row, index|
-      display_row = "#{index} "
+      display_row = "#{index} | "
       row.each_with_index do |tile, index2|
         if index == 0 && index2 == 0
-          puts "  0 1 2 3 4 5 6 7"
+          puts "   | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7"
+          puts "----------------------------------"
         end
         # debugger
         if [index, index2] == @cursor.cursor_pos
-          display_row += @board.grid[index][index2].symbol.red + " "
+          if @board.grid[index][index2].symbol == " "
+            display_row += "X".red + " | "
+          else
+            display_row += @board.grid[index][index2].symbol.red + " | "
+          end
         else
-          display_row += @board.grid[index][index2].symbol + " "
+          display_row += @board.grid[index][index2].symbol + " | "
         end
+
+
       end
       puts display_row
+      puts "----------------------------------"
     end
   end
 
@@ -36,5 +44,3 @@ class Display
     end
   end
 end
-display = Display.new(Board.new)
-display.test_display

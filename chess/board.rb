@@ -1,9 +1,11 @@
 require "byebug"
-require_relative "piece"
 require_relative "rook"
+require_relative "knight"
+require_relative "king"
+require_relative "pawn"
+require_relative "queen"
 require_relative "nullpiece"
-# require_relative "display"
-# require_relative "cursor"
+require_relative "bishop"
 
 class Board
   attr_accessor :grid
@@ -22,22 +24,33 @@ class Board
           when 0,7
           row[index2] = Rook.new("Rook", "R",[index,index2],"White")
           when 1,6
-          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          row[index2] = Knight.new("Knight", "K", [index,index2], "White")
           when 2,5
-          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          row[index2] = Bishop.new("Bishop", "B", [index,index2], "White")
           when 3
-          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          row[index2] = Queen.new("Queen", "Q", [index,index2], "White")
           when 4
-          row[index2] = Rook.new("Rook", "R",[index,index2],"White")
+          row[index2] = King.new("King", "$", [index,index2], "White")
           end
         when 1
-          row[index2] = Rook.new("Bishop", "B",[index,index2],"White")
+          row[index2] = Pawn.new("Pawn", "P",[index,index2],"White")
         when 6
-          row[index2] = Rook.new("Bishop", "B",[index,index2],"Black")
+          row[index2] = Pawn.new("Pawn", "P",[index,index2],"Black")
         when 7
+          case index2
+          when 0,7
           row[index2] = Rook.new("Rook", "R",[index,index2],"Black")
+          when 1,6
+          row[index2] = Knight.new("Knight", "K", [index,index2], "Black")
+          when 2,5
+          row[index2] = Bishop.new("Bishop", "B", [index,index2], "Black")
+          when 3
+          row[index2] = Queen.new("Queen", "Q", [index,index2], "Black")
+          when 4
+          row[index2] = King.new("King", "$", [index,index2], "Black")
+          end
         else
-          row[index2] = NullPiece.new("NullPiece", "N",[index,index2])
+          row[index2] = NullPiece.new("NullPiece", " ",[index,index2])
         end
       end
     end

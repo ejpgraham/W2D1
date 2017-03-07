@@ -1,4 +1,4 @@
-require_relative "piece" 
+require_relative "piece"
 require_relative "slidingpiece"
 
 class Bishop < Piece
@@ -10,7 +10,6 @@ class Bishop < Piece
 
     SlidingPiece.DIAGONAL.each {|k,v| possible_directions << v}
     possible_directions
-    end
 
   end
 end

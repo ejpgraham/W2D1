@@ -1,7 +1,7 @@
 require_relative "piece"
 require_relative "steppingpiece"
 
-class King
+class King < Piece
   include SteppingPiece
 
   protected
