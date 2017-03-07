@@ -73,7 +73,7 @@ class Board
       raise "Can't take your own piece"
     else
       self[end_pos] = self[start_pos]
-      self[start_pos] = nil
+      self[start_pos] = NullPiece.new("NullPiece", " ",[start_pos])
     end
   end
 
@@ -83,10 +83,3 @@ class Board
     false
   end
 end
-
-
-
-# new_board = Board.new
-# new_board.populate_grid
-# new_board.move_piece([0,0],[3,3])
-# p new_board

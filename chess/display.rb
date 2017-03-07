@@ -37,10 +37,14 @@ class Display
   end
 
   def test_display
-    while true
+    # render
+    # debugger
+    input = nil
+    until input
       render
-      @cursor.get_input
+      input = @cursor.get_input
       system("clear")
     end
+    input
   end
 end
